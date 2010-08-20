@@ -1,0 +1,53 @@
+!!! XML
+!!! strict
+%html{ xmlns: "http://www.w3.org/1999/xhtml" }
+  %head
+    %title Twister
+    :css
+      body {
+        background: #222;
+        color: white;
+      }
+      #main {
+        width: 600px;
+        margin: auto;
+      }
+      .title {
+        text-align: center;
+        color: #8eec6a;
+        font-weight: bold;
+        font-family: arial;
+        font-size: 40pt;
+        font-style: italic;
+      }
+      input {
+        margin-left: 10px;
+      }
+      .tweet {
+        border: 1px solid #8eec6a;
+        margin-top: 5px;
+        height: 50px;
+        width: 100%;
+      }
+      .tweet img {
+        float: left;
+        margin-right: 5px;
+      }
+      #names {
+        color: #BE008A;
+        font-size: 18pt; 
+      }
+  %body
+    #main
+      .title Twister
+      %form{action: "/", method: "POST", style: "text-align: center;"}
+        %label{for: "twitterName"} Twitter Name:
+        %input{type: "text", name: "twitterName"}
+        %input{type: "submit", value: "Add"}
+      #names= names.join(", ")
+      #tweets=
+        :each tweet in tweets
+          .tweet
+            %img{src: tweet['user']['profile_image_url']}
+            %p= tweet['text']
+
